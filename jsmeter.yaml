@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jmeter-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jmeter-server
+  template:
+    metadata:
+      labels:
+        app: jmeter-server
+    spec:
+      containers:
+      - name: jmeter-server
+        image: justb4/jmeter:latest
+        args: [ "-s", "-Dserver.rmi.ssl.disable=true" ]
